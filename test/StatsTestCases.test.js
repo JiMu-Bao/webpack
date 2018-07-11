@@ -49,6 +49,8 @@ describe("StatsTestCases", () => {
 				if (!options.optimization) options.optimization = {};
 				if (options.optimization.minimize === undefined)
 					options.optimization.minimize = false;
+				if (options.optimization.moduleIds === undefined)
+					options.optimization.moduleIds = "size";
 				// To support deprecated loaders
 				// TODO remove in webpack 5
 				options.plugins.push(
@@ -75,7 +77,6 @@ describe("StatsTestCases", () => {
 						])
 					);
 				};
-				new webpack.optimize.OccurrenceOrderPlugin().apply(c);
 			});
 			c.run((err, stats) => {
 				if (err) return done(err);
